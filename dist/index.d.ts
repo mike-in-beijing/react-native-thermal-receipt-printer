@@ -4,7 +4,7 @@ export interface PrinterOptions {
     cut?: boolean;
     tailingLine?: boolean;
     encoding?: string;
-    fontSize?: number;
+    fontSize?: string;
 }
 export interface IUSBPrinter {
     device_name: string;
