@@ -11,7 +11,7 @@ export interface PrinterOptions {
   cut?: boolean;
   tailingLine?: boolean;
   encoding?: string;
-  fontSize?: number;
+  fontSize?: string;
 }
 
 export interface IUSBPrinter {
@@ -37,7 +37,7 @@ const textTo64Buffer = (text: string, opts: PrinterOptions) => {
     cut: false,
     tailingLine: false,
     encoding: "UTF8",
-    fontSize: 0,
+    fontSize: "0",
   };
 
   const options = {

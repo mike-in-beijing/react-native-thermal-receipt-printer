@@ -94,7 +94,7 @@ RCT_EXPORT_METHOD(printRawData:(NSString *)text
         
         NSNumber* boldPtr = [options valueForKey:@"bold"];
         NSNumber* alignCenterPtr = [options valueForKey:@"center"];
-        NSNumber* fontSizePtr = [options valueForKey:@"fontSize"];
+        NSString* fontSizePtr = [options valueForKey:@"fontSize"];
         
         BOOL bold = (BOOL)[boldPtr intValue];
         BOOL alignCenter = (BOOL)[alignCenterPtr intValue];
@@ -103,7 +103,7 @@ RCT_EXPORT_METHOD(printRawData:(NSString *)text
         bold ? [[PrinterSDK defaultPrinterSDK] sendHex:@"1B2108"] : [[PrinterSDK defaultPrinterSDK] sendHex:@"1B2100"];
         alignCenter ? [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6102"] : [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6101"];
         if(fontSize > 0){
-            [[PrinterSDK defaultPrinterSDK] sendHex:[NSString stringWithFormat:@"1D21%d", fontSize]];
+            [[PrinterSDK defaultPrinterSDK] sendHex:[NSString stringWithFormat:@"1D21%@", fontSizePtr]];
         }
         [[PrinterSDK defaultPrinterSDK] printText:text];
         
