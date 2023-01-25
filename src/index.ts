@@ -12,6 +12,8 @@ export interface PrinterOptions {
   tailingLine?: boolean;
   encoding?: string;
   fontSize?: string;
+  bold?: boolean;
+  center?: boolean;
 }
 
 export interface IUSBPrinter {
@@ -38,6 +40,8 @@ const textTo64Buffer = (text: string, opts: PrinterOptions) => {
     tailingLine: false,
     encoding: "UTF8",
     fontSize: "0",
+    bold: false,
+    center: false,
   };
 
   const options = {
@@ -55,6 +59,8 @@ const billTo64Buffer = (text: string, opts: PrinterOptions) => {
     encoding: "UTF8",
     tailingLine: true,
     fontSize: 0,
+    bold: false,
+    center: false,
   };
   const options = {
     ...defaultOptions,
@@ -165,10 +171,8 @@ export const BLEPrinter = {
 
   printText: (text: string, opts: PrinterOptions = {}): void => {
     if (Platform.OS === "ios") {
-      const processedText = textPreprocessingIOS(text);
       RNBLEPrinter.printRawData(
-        processedText.text,
-        processedText.opts,
+        text,opts,
         (error: Error) => console.warn(error)
       );
     } else {

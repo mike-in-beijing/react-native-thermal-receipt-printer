@@ -101,7 +101,7 @@ RCT_EXPORT_METHOD(printRawData:(NSString *)text
         int fontSize = [fontSizePtr intValue];
 
         bold ? [[PrinterSDK defaultPrinterSDK] sendHex:@"1B2108"] : [[PrinterSDK defaultPrinterSDK] sendHex:@"1B2100"];
-        alignCenter ? [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6102"] : [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6101"];
+        alignCenter ? [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6101"] : [[PrinterSDK defaultPrinterSDK] sendHex:@"1B6100"];
         if(fontSize > 0){
             [[PrinterSDK defaultPrinterSDK] sendHex:[NSString stringWithFormat:@"1D21%@", fontSizePtr]];
         }

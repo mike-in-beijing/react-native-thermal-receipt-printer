@@ -21,6 +21,8 @@ var textTo64Buffer = function (text, opts) {
         tailingLine: false,
         encoding: "UTF8",
         fontSize: "0",
+        bold: false,
+        center: false,
     };
     var options = __assign(__assign({}, defaultOptions), opts);
     var buffer = EPToolkit.exchange_text(text, options);
@@ -33,6 +35,8 @@ var billTo64Buffer = function (text, opts) {
         encoding: "UTF8",
         tailingLine: true,
         fontSize: "0",
+        bold: false,
+        center: false,
     };
     var options = __assign(__assign({}, defaultOptions), opts);
     var buffer = EPToolkit.exchange_text(text, options);
@@ -131,8 +135,7 @@ export var BLEPrinter = {
     printText: function (text, opts) {
         if (opts === void 0) { opts = {}; }
         if (Platform.OS === "ios") {
-            var processedText = textPreprocessingIOS(text, false);
-            RNBLEPrinter.printRawData(processedText.text, processedText.opts, function (error) { return console.warn(error); });
+            RNBLEPrinter.printRawData(text, opts, function (error) { return console.warn(error); });
         }
         else {
             RNBLEPrinter.printRawData(textTo64Buffer(text, opts), function (error) {

@@ -5,6 +5,8 @@ export interface PrinterOptions {
     tailingLine?: boolean;
     encoding?: string;
     fontSize?: string;
+    bold?: boolean;
+    center?: boolean;
 }
 export interface IUSBPrinter {
     device_name: string;
