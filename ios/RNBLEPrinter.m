@@ -47,8 +47,10 @@ RCT_EXPORT_METHOD(getDeviceList:(RCTResponseSenderBlock)successCallback
             [_printerArray addObject:printer];
             NSMutableArray *mapped = [NSMutableArray arrayWithCapacity:[_printerArray count]];
             [_printerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSDictionary *dict = @{ @"device_name" : printer.name, @"inner_mac_address" : printer.UUIDString};
-                [mapped addObject:dict];
+                if (printer.name && printer.UUIDString) {
+                    NSDictionary *dict = @{ @"device_name" : printer.name, @"inner_mac_address" : printer.UUIDString};
+                    [mapped addObject:dict];
+                }
             }];
             NSMutableArray *uniquearray = (NSMutableArray *)[[NSSet setWithArray:mapped] allObjects];;
             successCallback(@[uniquearray]);
